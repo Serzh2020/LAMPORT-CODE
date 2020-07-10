@@ -30,7 +30,7 @@
     &emsp;&emsp;&emsp;&emsp;def pop(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while len(self.q) <= 0:<br>
-                self.data_available.wait()<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.wait()<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.q.pop(0)<br>
 
     &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
