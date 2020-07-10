@@ -17,22 +17,22 @@
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock&emsp;&emsp;&emsp;&emsp;&ensp;           = threading.Lock()<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available = threading.Condition(self.lock)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;              = []<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return str(self.q)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def push(self, x):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q.append(x)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.notify()<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def pop(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while len(self.q) <= 0:<br>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.wait()<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.q.pop(0)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;yield self.pop()<br>
