@@ -11,8 +11,8 @@
   
   &emsp;import threading<br>
 
-class AQueue(object):<br>
-    """Asynchronous Queue"""<br>
+  &emsp;class AQueue(object):<br>
+    &emsp;&emsp;"""Asynchronous Queue"""<br>
     def __init__(self):<br>
         self.lock           = threading.Lock()<br>
         self.data_available = threading.Condition(self.lock)<br>
