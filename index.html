@@ -46,37 +46,37 @@
     
    <h3>
     
-import aqueue<br>
-import itertools<br>
+&emsp;&emsp;import aqueue<br>
+&emsp;&emsp;import itertools<br>
 
-class Sender(object):<br>
-    def __init__(self, aq):<br>
-        self.aq = aq<br>
+&emsp;&emsp;class Sender(object):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
 
-    def send(self, x):<br>
-        self.aq.push(x)<br>
+    &emsp;&emsp;&emsp;&emsp;def send(self, x):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq.push(x)<br>
 
-    def copy(self):<br>
-        return Sender(self.aq)<br>
+    &emsp;&emsp;&emsp;&emsp;def copy(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return Sender(self.aq)<br>
 
-class Receiver(object):<br>
-    def __init__(self, aq):<br>
-        self.aq = aq<br>
+&emsp;&emsp;class Receiver(object):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
 
-    def recv(self):<br>
-        return self.aq.pop()<br>
+    &emsp;&emsp;&emsp;&emsp;def recv(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.pop()<br>
 
-    def iter(self):<br>
-        return self.aq.iter()<br>
+    &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.iter()<br>
 
-def channel():<br>
-    aq = aqueue.AQueue()<br>
-    return (Sender(aq), Receiver(aq))<br>
+&emsp;&emsp;def channel():<br>
+    &emsp;&emsp;&emsp;&emsp;aq = aqueue.AQueue()<br>
+    &emsp;&emsp;&emsp;&emsp;return (Sender(aq), Receiver(aq))<br>
 
-def bichannel():<br>
-    (tx0, rx0) = channel()<br>
-    (tx1, rx1) = channel()<br>
-    return ((tx0, rx1), (tx1, rx0))<br>
+&emsp;&emsp;def bichannel():<br>
+    &emsp;&emsp;&emsp;&emsp;(tx0, rx0) = channel()<br>
+    &emsp;&emsp;&emsp;&emsp;(tx1, rx1) = channel()<br>
+    &emsp;&emsp;&emsp;&emsp;return ((tx0, rx1), (tx1, rx0))<br>
    
     </h3> 
     
