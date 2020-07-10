@@ -1,4 +1,4 @@
-import AQueue
+import aqueue
 import itertools
 
 class Sender(object):
