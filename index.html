@@ -6,14 +6,14 @@
 
   <h1><ins>Week 1</ins></h1>
   
-  <h2>
+  <h3>
   
   
     &emsp;&emsp;<FONT color="red">import</FONT> threading<br>
     <p></p>
     &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">AQueue</FONT>(object):<br>
     &emsp;&emsp;&emsp;&emsp;"""Asynchronous Queue"""<br>
-    &emsp;&emsp;&emsp;&emsp;def <FONT color="fuchsia">__init__</FONT>(self):<br>
+    &emsp;&emsp;&emsp;&emsp;def <FONT color="purple">__init__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock&emsp;&emsp;&emsp;&emsp;&ensp;           <FONT color="blue">=</FONT> threading.<FONT color="orange">Lock</FONT>()<br>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available <FONT color="blue">=</FONT> threading.<FONT color="orange">Condition</FONT>(self.lock)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;              <FONT color="blue">=</FONT> []<br>
@@ -39,7 +39,7 @@
   
   
   
-  </h2>
+  </h3>
 
   
   
