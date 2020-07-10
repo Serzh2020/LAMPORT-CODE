@@ -15,8 +15,8 @@
     &emsp;&emsp;&emsp;&emsp;"""Asynchronous Queue"""<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock           = threading.Lock()<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available = threading.Condition(self.lock)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q              = []<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available&emsp;&emsp;&emsp; = threading.Condition(self.lock)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q&emsp;&emsp;&emsp;              = []<br>
 
     &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
