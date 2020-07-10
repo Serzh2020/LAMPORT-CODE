@@ -24,18 +24,18 @@
 
     &emsp;&emsp;&emsp;&emsp;def push(self, x):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
-            self.q.append(x)<br>
-            self.data_available.notify()<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q.append(x)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.notify()<br>
 
     &emsp;&emsp;&emsp;&emsp;def pop(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
-            while len(self.q) <= 0:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while len(self.q) <= 0:<br>
                 self.data_available.wait()<br>
-            return self.q.pop(0)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.q.pop(0)<br>
 
     &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>
-            yield self.pop()<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;yield self.pop()<br>
   
   
   
