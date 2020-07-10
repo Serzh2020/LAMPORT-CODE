@@ -46,37 +46,37 @@
     
    <h3>
     
-&emsp;&emsp;import aqueue<br>
-&emsp;&emsp;import itertools<br>
+     &emsp;&emsp;<FONT color="red">import</FONT> aqueue<br>
+&emsp;&emsp;<FONT color="red">import</FONT> itertools<br>
 <p></p>
-&emsp;&emsp;class Sender(object):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
+     &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Sender</FONT>(object):<br>
+     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, aq):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def send(self, x):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq.push(x)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">send</FONT>(self, x):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq.<FONT color="purple">push</FONT>(x)<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def copy(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return Sender(self.aq)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">copy</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> <FONT color="orange">Sender</FONT>(self.aq)<br>
 <p></p>
-&emsp;&emsp;class Receiver(object):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Receiver</FONT>(object):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, aq):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def recv(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.pop()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">recv</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> self.aq.<FONT color="purple">pop</FONT>()<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.iter()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">iter</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> self.aq.<FONT color="purple">iter</FONT>()<br>
 <p></p>
-&emsp;&emsp;def channel():<br>
-    &emsp;&emsp;&emsp;&emsp;aq = aqueue.AQueue()<br>
-    &emsp;&emsp;&emsp;&emsp;return (Sender(aq), Receiver(aq))<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">channel</FONT>():<br>
+    &emsp;&emsp;&emsp;&emsp;aq = aqueue.<FONT color="orange">AQueue</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> (<FONT color="orange">Sender</FONT>(aq), <FONT color="orange">Receiver</FONT>(aq))<br>
 <p></p>
-&emsp;&emsp;def bichannel():<br>
-    &emsp;&emsp;&emsp;&emsp;(tx0, rx0) = channel()<br>
-    &emsp;&emsp;&emsp;&emsp;(tx1, rx1) = channel()<br>
-    &emsp;&emsp;&emsp;&emsp;return ((tx0, rx1), (tx1, rx0))<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">bichannel</FONT>():<br>
+    &emsp;&emsp;&emsp;&emsp;(tx0, rx0) = <FONT color="purple">channel</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;(tx1, rx1) = <FONT color="purple">channel</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> ((tx0, rx1), (tx1, rx0))<br>
    
     </h3> 
     
