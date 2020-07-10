@@ -48,31 +48,31 @@
     
 &emsp;&emsp;import aqueue<br>
 &emsp;&emsp;import itertools<br>
-
+<p></p>
 &emsp;&emsp;class Sender(object):<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def send(self, x):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq.push(x)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def copy(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return Sender(self.aq)<br>
-
+<p></p>
 &emsp;&emsp;class Receiver(object):<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self, aq):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def recv(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.pop()<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.aq.iter()<br>
-
+<p></p>
 &emsp;&emsp;def channel():<br>
     &emsp;&emsp;&emsp;&emsp;aq = aqueue.AQueue()<br>
     &emsp;&emsp;&emsp;&emsp;return (Sender(aq), Receiver(aq))<br>
-
+<p></p>
 &emsp;&emsp;def bichannel():<br>
     &emsp;&emsp;&emsp;&emsp;(tx0, rx0) = channel()<br>
     &emsp;&emsp;&emsp;&emsp;(tx1, rx1) = channel()<br>
