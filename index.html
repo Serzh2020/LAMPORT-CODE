@@ -15,12 +15,12 @@
     &emsp;&emsp;&emsp;&emsp;"""Asynchronous Queue"""<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock&emsp;&emsp;&emsp;&emsp;&ensp;           = threading.Lock()<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available&nbsp; = threading.Condition(self.lock)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available = threading.Condition(self.lock)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;              = []<br>
 
     &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
-            return str(self.q)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return str(self.q)<br>
 
     &emsp;&emsp;&emsp;&emsp;def push(self, x):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
