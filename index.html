@@ -11,31 +11,31 @@
   
     &emsp;&emsp;<FONT color="red">import</FONT> threading<br>
     <p></p>
-  &emsp;&emsp;class AQueue(object):<br>
+    &emsp;&emsp;<FONT color="red">class</FONT> AQueue(object):<br>
     &emsp;&emsp;&emsp;&emsp;"""Asynchronous Queue"""<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock&emsp;&emsp;&emsp;&emsp;&ensp;           = threading.Lock()<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available = threading.Condition(self.lock)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;              = []<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return str(self.q)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> __str__(self):<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">with</FONT> self.lock:<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> str(self.q)<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def push(self, x):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> push(self, x):<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">with</FONT> self.lock:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q.append(x)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.notify()<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def pop(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while len(self.q) <= 0:<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> pop(self):<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">with</FONT> self.lock:<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">while</FONT> len(self.q) <= 0:<br>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available.wait()<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return self.q.pop(0)<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> self.q.pop(0)<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;yield self.pop()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> iter(self):<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">while</FONT> True:<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">yield</FONT> self.pop()<br>
   
   
   
