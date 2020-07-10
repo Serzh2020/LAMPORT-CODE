@@ -6,40 +6,40 @@
 
   <h1><ins>Week 1</ins></h1>
   
-  <h2><ins>
+  <h2>
   
   
   import threading<br>
 
-class AQueue(object):
-    """Asynchronous Queue"""
-    def __init__(self):
-        self.lock           = threading.Lock()
-        self.data_available = threading.Condition(self.lock)
-        self.q              = []
+class AQueue(object):<br>
+    """Asynchronous Queue"""<br>
+    def __init__(self):<br>
+        self.lock           = threading.Lock()<br>
+        self.data_available = threading.Condition(self.lock)<br>
+        self.q              = []<br>
 
-    def __str__(self):
-        with self.lock:
-            return str(self.q)
+    def __str__(self):<br>
+        with self.lock:<br>
+            return str(self.q)<br>
 
-    def push(self, x):
-        with self.lock:
-            self.q.append(x)
-            self.data_available.notify()
+    def push(self, x):<br>
+        with self.lock:<br>
+            self.q.append(x)<br>
+            self.data_available.notify()<br>
 
-    def pop(self):
-        with self.lock:
-            while len(self.q) <= 0:
-                self.data_available.wait()
-            return self.q.pop(0)
+    def pop(self):<br>
+        with self.lock:<br>
+            while len(self.q) <= 0:<br>
+                self.data_available.wait()<br>
+            return self.q.pop(0)<br>
 
-    def iter(self):
-        while True:
-            yield self.pop()
+    def iter(self):<br>
+        while True:<br>
+            yield self.pop()<br>
   
   
   
-  </ins></h2>
+  </h2>
 
   
   
