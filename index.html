@@ -15,26 +15,26 @@
     &emsp;&emsp;&emsp;&emsp;"""Asynchronous Queue"""<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.lock           = threading.Lock()<br>
-        self.data_available = threading.Condition(self.lock)<br>
-        self.q              = []<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.data_available = threading.Condition(self.lock)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.q              = []<br>
 
     &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-        with self.lock:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             return str(self.q)<br>
 
     &emsp;&emsp;&emsp;&emsp;def push(self, x):<br>
-        with self.lock:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             self.q.append(x)<br>
             self.data_available.notify()<br>
 
     &emsp;&emsp;&emsp;&emsp;def pop(self):<br>
-        with self.lock:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;with self.lock:<br>
             while len(self.q) <= 0:<br>
                 self.data_available.wait()<br>
             return self.q.pop(0)<br>
 
     &emsp;&emsp;&emsp;&emsp;def iter(self):<br>
-        while True:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>
             yield self.pop()<br>
   
   
