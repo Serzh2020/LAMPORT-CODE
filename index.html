@@ -112,9 +112,9 @@
 &emsp;&emsp;class Sent(Event):<br>
     &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, src, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&emsp;       = src<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&emsp;       = dst<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     = src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;       = src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;       = dst<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&emsp;     = src<br>
 
     &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "<{}>".format(self.dst)<br>
