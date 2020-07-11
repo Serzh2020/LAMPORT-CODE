@@ -52,7 +52,7 @@
 <p></p>
      &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Sender</FONT>(object):<br>
      &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, aq):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq <FONT color="blue">=</FONT> aq<br>
 <p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">send</FONT>(self, x):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq.<FONT color="purple">push</FONT>(x)<br>
@@ -62,7 +62,7 @@
 <p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Receiver</FONT>(object):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, aq):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq = aq<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.aq <FONT color="blue">=</FONT> aq<br>
 <p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">recv</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> self.aq.<FONT color="purple">pop</FONT>()<br>
@@ -71,12 +71,12 @@
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> self.aq.<FONT color="purple">iter</FONT>()<br>
 <p></p>
 &emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">channel</FONT>():<br>
-    &emsp;&emsp;&emsp;&emsp;aq = aqueue.<FONT color="orange">AQueue</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;aq <FONT color="blue">=</FONT> aqueue.<FONT color="orange">AQueue</FONT>()<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> (<FONT color="orange">Sender</FONT>(aq), <FONT color="orange">Receiver</FONT>(aq))<br>
 <p></p>
 &emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">bichannel</FONT>():<br>
-    &emsp;&emsp;&emsp;&emsp;(tx0, rx0) = <FONT color="purple">channel</FONT>()<br>
-    &emsp;&emsp;&emsp;&emsp;(tx1, rx1) = <FONT color="purple">channel</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;(tx0, rx0) <FONT color="blue">=</FONT> <FONT color="purple">channel</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;(tx1, rx1) <FONT color="blue">=</FONT> <FONT color="purple">channel</FONT>()<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> ((tx0, rx1), (tx1, rx0))<br>
    
     </h3> 
