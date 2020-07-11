@@ -251,35 +251,35 @@
       
       <h3>
         
-import lamport
+import lamport<br>
 
-def f(clock):
-    clock.send(1)
-    clock.recv(1)
-    clock.local()
-    clock.recv(1)
+def f(clock):<br>
+    clock.send(1)<br>
+    clock.recv(1)<br>
+    clock.local()<br>
+    clock.recv(1)<br>
 
-def g(clock):
-    clock.send(0)
-    clock.send(2)
-    clock.recv(0)
-    clock.local()
-    clock.send(2)
-    clock.send(0)
-    clock.local()
-    clock.recv(2)
+def g(clock):<br>
+    clock.send(0)<br>
+    clock.send(2)<br>
+    clock.recv(0)<br>
+    clock.local()<br>
+    clock.send(2)<br>
+    clock.send(0)<br>
+    clock.local()<br>
+    clock.recv(2)<br>
 
-def h(clock):
-    clock.local()
-    clock.send(1)
-    clock.recv(1)
-    clock.recv(1)
+def h(clock):<br>
+    clock.local()<br>
+    clock.send(1)<br>
+    clock.recv(1)<br>
+    clock.recv(1)<br>
 
-def main():
-    lamport.wind([f, g, h], "clock.png")()
+def main():<br>
+    lamport.wind([f, g, h], "clock.png")()<br>
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__":<br>
+    main()<br>
         
       </h3>
         
