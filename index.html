@@ -87,160 +87,160 @@
     
     <h3>
       
-&emsp;&emsp;import channel<br>
-&emsp;&emsp;import math<br>
-&emsp;&emsp;import itertools<br>
-&emsp;&emsp;import matplotlib.pyplot as plt<br>
-&emsp;&emsp;import string<br>
-&emsp;&emsp;import sys<br>
-&emsp;&emsp;import threading<br>
+      &emsp;&emsp;<FONT color="red">import</FONT> channel<br>
+&emsp;&emsp;<FONT color="red">import</FONT> math<br>
+&emsp;&emsp;<FONT color="red">import</FONT> itertools<br>
+&emsp;&emsp;<FONT color="red">import</FONT> matplotlib.pyplot as plt<br>
+&emsp;&emsp;<FONT color="red">import</FONT> string<br>
+&emsp;&emsp;<FONT color="red">import</FONT> sys<br>
+&emsp;&emsp;<FONT color="red">import</FONT> threading<br>
 
-&emsp;&emsp;class Event(object):<br>
-    &emsp;&emsp;&emsp;&emsp;pass<br>
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Event</FONT>(object):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">pass</FONT><br>
 
-&emsp;&emsp;class Local(Event):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, owner):<br>
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Local</FONT>(<FONT color="orange">Event</FONT>):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, owner):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     <FONT color="blue">=</FONT> owner<br>
+
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> " {} ".<FONT color="purple">format</FONT>(self.owner)<br>
+
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Local({}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.owner)<br>
+
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Sent</FONT>(<FONT color="orange">Event</FONT>):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     = owner<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;      <FONT color="blue">=</FONT> src<br>
 
-    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return " {} ".format(self.owner)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "<{}>".<FONT color="purple">format</FONT>(self.dst)<br>
 
-    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Local({}, {})".format(self.timestamp, self.owner)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Sent({}, {}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.src, self.dst)<br>
 
-&emsp;&emsp;class Sent(Event):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, src, dst):<br>
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Received</FONT>(<FONT color="orange">Event</FONT>):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       = src<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       = dst<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;      = src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     <FONT color="blue">=</FONT> dst<br>
 
-    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "<{}>".format(self.dst)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "({})".<FONT color="purple">format</FONT>(self.src)<br>
 
-    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Sent({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Received({}, {}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.src, self.dst)<br>
 
-&emsp;&emsp;class Received(Event):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, src, dst):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       = src<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       = dst<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     = dst<br>
-
-    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "({})".format(self.src)<br>
-
-    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Received({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
-
-&emsp;&emsp;class Clock_i(object):<br>
-    &emsp;&emsp;&emsp;&emsp;def __init__(self, i, channels, shower_tx):<br>
+&emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Clock_i</FONT>(object):<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, i, channels, shower_tx):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.i&emsp;&emsp;&emsp;&emsp;&nbsp;         = i<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.channels&ensp;&nbsp;  = channels<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx = shower_tx<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = 0<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.channels&ensp;&nbsp;  <FONT color="blue">=</FONT> channels<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx <FONT color="blue">=</FONT> shower_tx<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> 0<br>
 
-    &emsp;&emsp;&emsp;&emsp;def local(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Local(self.timestamp, self.i))<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">local</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Local</FONT>(self.timestamp, self.i))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+= 1</FONT><br>
 
-    &emsp;&emsp;&emsp;&emsp;def send(self, dst):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Sent(self.timestamp, self.i, dst))<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(tx, _) = self.channels[dst]<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;tx.send(self.timestamp)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">send</FONT>(self, dst):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Sent</FONT>(self.timestamp, self.i, dst))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(tx, _) <FONT color="blue">=</FONT> self.channels[dst]<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;tx.<FONT color="purple">send</FONT>(self.timestamp)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+=</FONT> 1<br>
 
-    &emsp;&emsp;&emsp;&emsp;def recv(self, src):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(_, rx) = self.channels[src]<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = max(self.timestamp, rx.recv() + 1)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Received(self.timestamp, src, self.i))<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">recv</FONT>(self, src):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(_, rx) <FONT color="blue">=</FONT> self.channels[src]<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> <FONT color="purple">max</FONT>(self.timestamp, rx.<FONT color="purple">recv</FONT>() <FONT color="blue">+ 1</FONT>)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Received</FONT>(self.timestamp, src, self.i))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+= 1</FONT><br>
 
-    &emsp;&emsp;&emsp;&emsp;def done_(self):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(None)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">done_</FONT>(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="blue">None</FONT>)<br>
 
-&emsp;&emsp;def wind(fs, plotname="clock.svg"):<br>
-    &emsp;&emsp;&emsp;&emsp;num_threads = len(fs)<br>
-    &emsp;&emsp;&emsp;&emsp;ids = range(num_threads)<br>
-    &emsp;&emsp;&emsp;&emsp;(shower_tx, shower_rx) = channel.channel()<br>
-    &emsp;&emsp;&emsp;&emsp;channels = {i: {} for i in ids}<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">wind</FONT>(fs, plotname="clock.svg"):<br>
+    &emsp;&emsp;&emsp;&emsp;num_threads <FONT color="blue">=</FONT> <FONT color="purple">len</FONT>(fs)<br>
+    &emsp;&emsp;&emsp;&emsp;ids <FONT color="blue">=</FONT> <FONT color="purple">range</FONT>(num_threads)<br>
+    &emsp;&emsp;&emsp;&emsp;(shower_tx, shower_rx) <FONT color="blue">=</FONT> channel.<FONT color="purple">channel</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;channels <FONT color="blue">=</FONT> {i: {} <FONT color="red">for</FONT> i <FONT color="blue">in</FONT> ids}<br>
 
-    &emsp;&emsp;&emsp;&emsp;for (i, j) in itertools.combinations(ids, 2):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(chan0, chan1) = channel.bichannel()<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[i][j]&ensp; = chan0<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[j][i]&ensp; = chan1<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (i, j) <FONT color="blue">in</FONT> itertools.<FONT color="purple">combinations</FONT>(ids, <FONT color="blue">2</FONT>):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(chan0, chan1) <FONT color="blue">=</FONT> channel.<FONT color="purple">bichannel</FONT>()<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[i][j]&ensp; <FONT color="blue">=</FONT> chan0<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[j][i]&ensp; <FONT color="blue">=</FONT> chan1<br>
 
-    &emsp;&emsp;&emsp;&emsp;for (i, f) in enumerate(fs):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;def ticktock(f, clock):<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;f(clock)<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock.done_()<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (i, f) <FONT color="blue">in</FONT> <FONT color="purple">enumerate</FONT>(fs):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">ticktock</FONT>(f, clock):<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="purple">f</FONT>(clock)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">done_</FONT>()<br>
 
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock = Clock_i(i, channels[i], shower_tx.copy())<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;threading.Thread(target=ticktock, args=(f, clock)).start()<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock <FONT color="blue">=</FONT> <FONT color="orange">Clock_i</FONT>(i, channels[i], shower_tx.<FONT color="purple">copy</FONT>())<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;threading.<FONT color="orange">Thread</FONT>(target<FONT color="blue">=</FONT>ticktock, args<FONT color="blue">=</FONT>(f, clock)).<FONT color="purple">start</FONT>()<br>
 
-    &emsp;&emsp;&emsp;&emsp;return lambda: plot(num_threads, shower_rx, plotname)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">return lambda</FONT>: <FONT color="purple">plot</FONT>(num_threads, shower_rx, plotname)<br>
 
-&emsp;&emsp;def get_events(num_threads, shower_rx):<br>
-    &emsp;&emsp;&emsp;&emsp;num_done = [0]<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">get_events</FONT>(num_threads, shower_rx):<br>
+    &emsp;&emsp;&emsp;&emsp;num_done <FONT color="blue">=</FONT> [<FONT color="blue">0</FONT>]<br>
 
-    &emsp;&emsp;&emsp;&emsp;def more(event):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if event is None:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num_done[0] += 1<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return num_threads != num_done[0]<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">more</FONT>(event):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> event <FONT color="blue">is None</FONT>:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num_done[<FONT color="blue">0</FONT>] <FONT color="blue">+= 1</FONT><br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> num_threads <FONT color="blue">!=</FONT> num_done[<FONT color="blue">0</FONT>]<br>
 
-    &emsp;&emsp;&emsp;&emsp;events = itertools.takewhile(more, shower_rx.iter())<br>
-    &emsp;&emsp;&emsp;&emsp;events = filter(lambda e: e is not None, events)<br>
-    &emsp;&emsp;&emsp;&emsp;return list(events)<br>
+    &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> itertools.<FONT color="purple">takewhile</FONT>(more, shower_rx.<FONT color="purple">iter</FONT>())<br>
+    &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">filter</FONT>(<FONT color="red">lambda</FONT> e: e <FONT color="blue">is not None</FONT>, events)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> <FONT color="purple">list</FONT>(events)<br>
 
-&emsp;&emsp;def plot(num_threads, shower_rx, plotname):<br>
-    &emsp;&emsp;&emsp;&emsp;events = get_events(num_threads, shower_rx)<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">plot</FONT>(num_threads, shower_rx, plotname):<br>
+    &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">get_events</FONT>(num_threads, shower_rx)<br>
 
-    &emsp;&emsp;&emsp;&emsp;if len(events) == 0:<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.axis("off")<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.savefig(plotname, bbox_inches="tight")<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> <FONT color="purple">len</FONT>(events) <FONT color="blue">== 0</FONT>:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">axis</FONT>("off")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">savefig</FONT>(plotname, bbox_inches<FONT color="blue">=</FONT>"tight")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT><br>
 
-    &emsp;&emsp;&emsp;&emsp;events = sorted(events, key=lambda e: e.timestamp)<br>
-    &emsp;&emsp;&emsp;&emsp;max_timestamp = events[-1].timestamp<br>
+    &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">sorted</FONT>(events, key<FONT color="blue">=</FONT><FONT color="red">lambda</FONT> e: e.timestamp)<br>
+    &emsp;&emsp;&emsp;&emsp;max_timestamp <FONT color="blue">=</FONT> events[<FONT color="blue">-1</FONT>].timestamp<br>
 
     &emsp;&emsp;&emsp;&emsp;# horizontal lines<br>
-    &emsp;&emsp;&emsp;&emsp;for i in range(max_timestamp):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([0, num_threads - 1], [i + 0.5, i + 0.5], "k--")<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(max_timestamp):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([<FONT color="blue">0</FONT>, num_threads <FONT color="blue">- 1</FONT>], [i <FONT color="blue">+ 0.5</FONT>, i <FONT color="blue">+ 0.5</FONT>], "k--")<br>
 
     &emsp;&emsp;&emsp;&emsp;# vertical lines<br>
-    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([i, i], [-0.5, max_timestamp + 0.5], "k")<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([i, i], [<FONT color="blue">-0.5</FONT>, max_timestamp <FONT color="blue">+ 0.5</FONT>], "k")<br>
 
     &emsp;&emsp;&emsp;&emsp;# thread labels<br>
-    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.text(i, max_timestamp + 2, "process ${}$".format(string.letters[i]), rotation="vertical", horizontalalignment="center")<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(i, max_timestamp <FONT color="blue">+ 2</FONT>, "process ${}$".<FONT color="purple">format</FONT>(string.letters[i]), rotation<FONT color="blue">=</FONT>"vertical", horizontalalignment<FONT color="blue">=</FONT>"center")<br>
 
     &emsp;&emsp;&emsp;&emsp;# event labels<br>
-    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;for (j, e) in enumerate(filter(lambda e: e.owner == i, events)):<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.text(e.owner - 0.1, e.timestamp, "${}_{}$".format(string.letters[i], j))<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (j, e) <FONT color="blue">in</FONT> <FONT color="purple">enumerate</FONT>(<FONT color="purple">filter</FONT>(<FONT color="red">lambda</FONT> e: e.owner <FONT color="blue">==</FONT> i, events)):<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(e.owner <FONT color="blue">- 0.1</FONT>, e.timestamp, "${}_{}$".<FONT color="purple">format</FONT>(string.letters[i], j))<br>
 
     &emsp;&emsp;&emsp;&emsp;# events<br>
-    &emsp;&emsp;&emsp;&emsp;while len(events) > 0:<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e = events.pop(0)<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="red">while</FONT> <FONT color="purple">len</FONT>(events) <FONT color="blue">> 0</FONT>:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e <FONT color="blue">=</FONT> events.<FONT color="purple">pop</FONT>(<FONT color="blue">0</FONT>)<br>
 
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if type(e) is Local:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.scatter([e.owner], [e.timestamp], c="k")<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elif type(e) is Sent:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s = e
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x0, y0) = (s.owner, s.timestamp)<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r = next(e for e in events if type(e) is Received and e.src == s.src)<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x1, y1)  = (r.owner, r.timestamp)<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.scatter([x0, x1], [y0, y1], c="k")<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([x0, x1], [y0, y1])<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;events.remove(r)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;else:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pass<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Local</FONT>:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">scatter</FONT>([e.owner], [e.timestamp], c<FONT color="blue">=</FONT>"k")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">elif</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Sent</FONT>:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s <FONT color="blue">=</FONT> e
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x0, y0) <FONT color="blue">=</FONT> (s.owner, s.timestamp)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r = <FONT color="purple">next</FONT>(e <FONT color="red">for</FONT> e <FONT color="blue">in</FONT> events <FONT color="red">if</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Received</FONT> <FONT color="blue">and</FONT> e.src <FONT color="blue">==</FONT> s.src)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x1, y1)  <FONT color="blue">=</FONT> (r.owner, r.timestamp)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">scatter</FONT>([x0, x1], [y0, y1], c<FONT color="blue">=</FONT>"k")<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([x0, x1], [y0, y1])<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;events.<FONT color="purple">remove</FONT>(r)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">else</FONT>:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">pass</FONT><br>
 
-    &emsp;&emsp;&emsp;&emsp;plt.axis("off")<br>
-    &emsp;&emsp;&emsp;&emsp;plt.savefig(plotname, bbox_inches="tight")<br>
+    &emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">axis</FONT>("off")<br>
+    &emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">savefig</FONT>(plotname, bbox_inches<FONT color="blue">=</FONT>"tight")<br>
       
     </h3>
     
