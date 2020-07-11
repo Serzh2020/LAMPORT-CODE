@@ -94,138 +94,138 @@
 &emsp;&emsp;<FONT color="red">import</FONT> string<br>
 &emsp;&emsp;<FONT color="red">import</FONT> sys<br>
 &emsp;&emsp;<FONT color="red">import</FONT> threading<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Event</FONT>(object):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">pass</FONT><br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Local</FONT>(<FONT color="orange">Event</FONT>):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, owner):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> timestamp<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     <FONT color="blue">=</FONT> owner<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> " {} ".<FONT color="purple">format</FONT>(self.owner)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Local({}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.owner)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Sent</FONT>(<FONT color="orange">Event</FONT>):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;      <FONT color="blue">=</FONT> src<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "<{}>".<FONT color="purple">format</FONT>(self.dst)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Sent({}, {}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.src, self.dst)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Received</FONT>(<FONT color="orange">Event</FONT>):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     <FONT color="blue">=</FONT> dst<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__str__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "({})".<FONT color="purple">format</FONT>(self.src)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__repr__</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> "Received({}, {}, {})".<FONT color="purple">format</FONT>(self.timestamp, self.src, self.dst)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Clock_i</FONT>(object):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, i, channels, shower_tx):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.i&emsp;&emsp;&emsp;&emsp;&nbsp;         = i<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.channels&ensp;&nbsp;  <FONT color="blue">=</FONT> channels<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx <FONT color="blue">=</FONT> shower_tx<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> 0<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">local</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Local</FONT>(self.timestamp, self.i))<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+= 1</FONT><br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">send</FONT>(self, dst):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Sent</FONT>(self.timestamp, self.i, dst))<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(tx, _) <FONT color="blue">=</FONT> self.channels[dst]<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;tx.<FONT color="purple">send</FONT>(self.timestamp)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+=</FONT> 1<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">recv</FONT>(self, src):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(_, rx) <FONT color="blue">=</FONT> self.channels[src]<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> <FONT color="purple">max</FONT>(self.timestamp, rx.<FONT color="purple">recv</FONT>() <FONT color="blue">+ 1</FONT>)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Received</FONT>(self.timestamp, src, self.i))<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+= 1</FONT><br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">done_</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="blue">None</FONT>)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">wind</FONT>(fs, plotname="clock.svg"):<br>
     &emsp;&emsp;&emsp;&emsp;num_threads <FONT color="blue">=</FONT> <FONT color="purple">len</FONT>(fs)<br>
     &emsp;&emsp;&emsp;&emsp;ids <FONT color="blue">=</FONT> <FONT color="purple">range</FONT>(num_threads)<br>
     &emsp;&emsp;&emsp;&emsp;(shower_tx, shower_rx) <FONT color="blue">=</FONT> channel.<FONT color="purple">channel</FONT>()<br>
     &emsp;&emsp;&emsp;&emsp;channels <FONT color="blue">=</FONT> {i: {} <FONT color="red">for</FONT> i <FONT color="blue">in</FONT> ids}<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (i, j) <FONT color="blue">in</FONT> itertools.<FONT color="purple">combinations</FONT>(ids, <FONT color="blue">2</FONT>):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(chan0, chan1) <FONT color="blue">=</FONT> channel.<FONT color="purple">bichannel</FONT>()<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[i][j]&ensp; <FONT color="blue">=</FONT> chan0<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[j][i]&ensp; <FONT color="blue">=</FONT> chan1<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (i, f) <FONT color="blue">in</FONT> <FONT color="purple">enumerate</FONT>(fs):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">ticktock</FONT>(f, clock):<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="purple">f</FONT>(clock)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">done_</FONT>()<br>
-
+<p></p>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock <FONT color="blue">=</FONT> <FONT color="orange">Clock_i</FONT>(i, channels[i], shower_tx.<FONT color="purple">copy</FONT>())<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;threading.<FONT color="orange">Thread</FONT>(target<FONT color="blue">=</FONT>ticktock, args<FONT color="blue">=</FONT>(f, clock)).<FONT color="purple">start</FONT>()<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">return lambda</FONT>: <FONT color="purple">plot</FONT>(num_threads, shower_rx, plotname)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">get_events</FONT>(num_threads, shower_rx):<br>
     &emsp;&emsp;&emsp;&emsp;num_done <FONT color="blue">=</FONT> [<FONT color="blue">0</FONT>]<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">more</FONT>(event):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> event <FONT color="blue">is None</FONT>:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num_done[<FONT color="blue">0</FONT>] <FONT color="blue">+= 1</FONT><br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> num_threads <FONT color="blue">!=</FONT> num_done[<FONT color="blue">0</FONT>]<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> itertools.<FONT color="purple">takewhile</FONT>(more, shower_rx.<FONT color="purple">iter</FONT>())<br>
     &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">filter</FONT>(<FONT color="red">lambda</FONT> e: e <FONT color="blue">is not None</FONT>, events)<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT> <FONT color="purple">list</FONT>(events)<br>
-
+<p></p>
 &emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">plot</FONT>(num_threads, shower_rx, plotname):<br>
     &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">get_events</FONT>(num_threads, shower_rx)<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> <FONT color="purple">len</FONT>(events) <FONT color="blue">== 0</FONT>:<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">axis</FONT>("off")<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">savefig</FONT>(plotname, bbox_inches<FONT color="blue">=</FONT>"tight")<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">return</FONT><br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">sorted</FONT>(events, key<FONT color="blue">=</FONT><FONT color="red">lambda</FONT> e: e.timestamp)<br>
     &emsp;&emsp;&emsp;&emsp;max_timestamp <FONT color="blue">=</FONT> events[<FONT color="blue">-1</FONT>].timestamp<br>
-
-    &emsp;&emsp;&emsp;&emsp;# horizontal lines<br>
+<p></p>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="silver"># horizontal lines</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(max_timestamp):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([<FONT color="blue">0</FONT>, num_threads <FONT color="blue">- 1</FONT>], [i <FONT color="blue">+ 0.5</FONT>, i <FONT color="blue">+ 0.5</FONT>], "k--")<br>
-
-    &emsp;&emsp;&emsp;&emsp;# vertical lines<br>
+<p></p>
+    &emsp;&emsp;&emsp;&emsp;# <FONT color="gray">vertical lines</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([i, i], [<FONT color="blue">-0.5</FONT>, max_timestamp <FONT color="blue">+ 0.5</FONT>], "k")<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;# thread labels<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(i, max_timestamp <FONT color="blue">+ 2</FONT>, "process ${}$".<FONT color="purple">format</FONT>(string.letters[i]), rotation<FONT color="blue">=</FONT>"vertical", horizontalalignment<FONT color="blue">=</FONT>"center")<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;# event labels<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (j, e) <FONT color="blue">in</FONT> <FONT color="purple">enumerate</FONT>(<FONT color="purple">filter</FONT>(<FONT color="red">lambda</FONT> e: e.owner <FONT color="blue">==</FONT> i, events)):<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(e.owner <FONT color="blue">- 0.1</FONT>, e.timestamp, "${}_{}$".<FONT color="purple">format</FONT>(string.letters[i], j))<br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;# events<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">while</FONT> <FONT color="purple">len</FONT>(events) <FONT color="blue">> 0</FONT>:<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e <FONT color="blue">=</FONT> events.<FONT color="purple">pop</FONT>(<FONT color="blue">0</FONT>)<br>
-
+<p></p>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Local</FONT>:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">scatter</FONT>([e.owner], [e.timestamp], c<FONT color="blue">=</FONT>"k")<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">elif</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Sent</FONT>:<br>
@@ -238,7 +238,7 @@
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;events.<FONT color="purple">remove</FONT>(r)<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">else</FONT>:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">pass</FONT><br>
-
+<p></p>
     &emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">axis</FONT>("off")<br>
     &emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">savefig</FONT>(plotname, bbox_inches<FONT color="blue">=</FONT>"tight")<br>
       
