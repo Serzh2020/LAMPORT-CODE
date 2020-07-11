@@ -251,35 +251,35 @@
       
       <h3>
         
-import lamport<br>
+&emsp;&emsp;import lamport<br>
 
-def f(clock):<br>
-    clock.send(1)<br>
-    clock.recv(1)<br>
-    clock.local()<br>
-    clock.recv(1)<br>
+&emsp;&emsp;def f(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(1)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
 
-def g(clock):<br>
-    clock.send(0)<br>
-    clock.send(2)<br>
-    clock.recv(0)<br>
-    clock.local()<br>
-    clock.send(2)<br>
-    clock.send(0)<br>
-    clock.local()<br>
-    clock.recv(2)<br>
+&emsp;&emsp;def g(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(0)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(2)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(0)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(2)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(0)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(2)<br>
 
-def h(clock):<br>
-    clock.local()<br>
-    clock.send(1)<br>
-    clock.recv(1)<br>
-    clock.recv(1)<br>
+&emsp;&emsp;def h(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.send(1)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
 
-def main():<br>
-    lamport.wind([f, g, h], "clock.png")()<br>
+&emsp;&emsp;def main():<br>
+    &emsp;&emsp;&emsp;&emsp;lamport.wind([f, g, h], "clock.png")()<br>
 
-if __name__ == "__main__":<br>
-    main()<br>
+&emsp;&emsp;if __name__ == "__main__":<br>
+    &emsp;&emsp;&emsp;&emsp;main()<br>
         
       </h3>
         
