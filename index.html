@@ -87,160 +87,160 @@
     
     <h3>
       
-import channel<br>
-import math<br>
-import itertools<br>
-import matplotlib.pyplot as plt<br>
-import string<br>
-import sys<br>
-import threading<br>
+&emsp;&emsp;import channel<br>
+&emsp;&emsp;import math<br>
+&emsp;&emsp;import itertools<br>
+&emsp;&emsp;import matplotlib.pyplot as plt<br>
+&emsp;&emsp;import string<br>
+&emsp;&emsp;import sys<br>
+&emsp;&emsp;import threading<br>
 
-class Event(object):<br>
-    pass<br>
+&emsp;&emsp;class Event(object):<br>
+    &emsp;&emsp;&emsp;&emsp;pass<br>
 
-class Local(Event):<br>
-    def __init__(self, timestamp, owner):<br>
-        self.timestamp = timestamp<br>
-        self.owner     = owner<br>
+&emsp;&emsp;class Local(Event):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, owner):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner     = owner<br>
 
-    def __str__(self):<br>
-        return " {} ".format(self.owner)<br>
+    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return " {} ".format(self.owner)<br>
 
-    def __repr__(self):<br>
-        return "Local({}, {})".format(self.timestamp, self.owner)<br>
+    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Local({}, {})".format(self.timestamp, self.owner)<br>
 
-class Sent(Event):<br>
-    def __init__(self, timestamp, src, dst):<br>
-        self.timestamp = timestamp<br>
-        self.src       = src<br>
-        self.dst       = dst<br>
-        self.owner     = src<br>
+&emsp;&emsp;class Sent(Event):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, src, dst):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src       = src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst       = dst<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner     = src<br>
 
-    def __str__(self):<br>
-        return "<{}>".format(self.dst)<br>
+    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "<{}>".format(self.dst)<br>
 
-    def __repr__(self):<br>
-        return "Sent({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
+    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Sent({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
 
-class Received(Event):<br>
-    def __init__(self, timestamp, src, dst):<br>
-        self.timestamp = timestamp<br>
-        self.src       = src<br>
-        self.dst       = dst<br>
-        self.owner     = dst<br>
+&emsp;&emsp;class Received(Event):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, timestamp, src, dst):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src       = src<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst       = dst<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner     = dst<br>
 
-    def __str__(self):<br>
-        return "({})".format(self.src)<br>
+    &emsp;&emsp;&emsp;&emsp;def __str__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "({})".format(self.src)<br>
 
-    def __repr__(self):<br>
-        return "Received({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
+    &emsp;&emsp;&emsp;&emsp;def __repr__(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return "Received({}, {}, {})".format(self.timestamp, self.src, self.dst)<br>
 
-class Clock_i(object):<br>
-    def __init__(self, i, channels, shower_tx):<br>
-        self.i         = i<br>
-        self.channels  = channels<br>
-        self.shower_tx    = shower_tx<br>
-        self.timestamp = 0<br>
+&emsp;&emsp;class Clock_i(object):<br>
+    &emsp;&emsp;&emsp;&emsp;def __init__(self, i, channels, shower_tx):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.i         = i<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.channels  = channels<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx = shower_tx<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = 0<br>
 
-    def local(self):<br>
-        self.shower_tx.send(Local(self.timestamp, self.i))<br>
-        self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;def local(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Local(self.timestamp, self.i))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
 
-    def send(self, dst):<br>
-        self.shower_tx.send(Sent(self.timestamp, self.i, dst))<br>
-        (tx, _) = self.channels[dst]<br>
-        tx.send(self.timestamp)<br>
-        self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;def send(self, dst):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Sent(self.timestamp, self.i, dst))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(tx, _) = self.channels[dst]<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;tx.send(self.timestamp)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
 
-    def recv(self, src):<br>
-        (_, rx) = self.channels[src]<br>
-        self.timestamp = max(self.timestamp, rx.recv() + 1)<br>
-        self.shower_tx.send(Received(self.timestamp, src, self.i))<br>
-        self.timestamp += 1<br>
+    &emsp;&emsp;&emsp;&emsp;def recv(self, src):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(_, rx) = self.channels[src]<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = max(self.timestamp, rx.recv() + 1)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(Received(self.timestamp, src, self.i))<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp += 1<br>
 
-    def done_(self):<br>
-        self.shower_tx.send(None)<br>
+    &emsp;&emsp;&emsp;&emsp;def done_(self):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.send(None)<br>
 
-def wind(fs, plotname="clock.svg"):<br>
-    num_threads = len(fs)<br>
-    ids = range(num_threads)<br>
-    (shower_tx, shower_rx) = channel.channel()<br>
-    channels = {i: {} for i in ids}<br>
+&emsp;&emsp;def wind(fs, plotname="clock.svg"):<br>
+    &emsp;&emsp;&emsp;&emsp;num_threads = len(fs)<br>
+    &emsp;&emsp;&emsp;&emsp;ids = range(num_threads)<br>
+    &emsp;&emsp;&emsp;&emsp;(shower_tx, shower_rx) = channel.channel()<br>
+    &emsp;&emsp;&emsp;&emsp;channels = {i: {} for i in ids}<br>
 
-    for (i, j) in itertools.combinations(ids, 2):<br>
-        (chan0, chan1) = channel.bichannel()<br>
-        channels[i][j] = chan0<br>
-        channels[j][i] = chan1<br>
+    &emsp;&emsp;&emsp;&emsp;for (i, j) in itertools.combinations(ids, 2):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(chan0, chan1) = channel.bichannel()<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[i][j] = chan0<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;channels[j][i] = chan1<br>
 
-    for (i, f) in enumerate(fs):<br>
-        def ticktock(f, clock):<br>
-            f(clock)<br>
-            clock.done_()<br>
+    &emsp;&emsp;&emsp;&emsp;for (i, f) in enumerate(fs):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;def ticktock(f, clock):<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;f(clock)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock.done_()<br>
 
-        clock = Clock_i(i, channels[i], shower_tx.copy())<br>
-        threading.Thread(target=ticktock, args=(f, clock)).start()<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;clock = Clock_i(i, channels[i], shower_tx.copy())<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;threading.Thread(target=ticktock, args=(f, clock)).start()<br>
 
-    return lambda: plot(num_threads, shower_rx, plotname)<br>
+    &emsp;&emsp;&emsp;&emsp;return lambda: plot(num_threads, shower_rx, plotname)<br>
 
-def get_events(num_threads, shower_rx):<br>
-    num_done = [0]<br>
+&emsp;&emsp;def get_events(num_threads, shower_rx):<br>
+    &emsp;&emsp;&emsp;&emsp;num_done = [0]<br>
 
-    def more(event):<br>
-        if event is None:<br>
-            num_done[0] += 1<br>
-        return num_threads != num_done[0]<br>
+    &emsp;&emsp;&emsp;&emsp;def more(event):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if event is None:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num_done[0] += 1<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return num_threads != num_done[0]<br>
 
-    events = itertools.takewhile(more, shower_rx.iter())<br>
-    events = filter(lambda e: e is not None, events)<br>
-    return list(events)<br>
+    &emsp;&emsp;&emsp;&emsp;events = itertools.takewhile(more, shower_rx.iter())<br>
+    &emsp;&emsp;&emsp;&emsp;events = filter(lambda e: e is not None, events)<br>
+    &emsp;&emsp;&emsp;&emsp;return list(events)<br>
 
-def plot(num_threads, shower_rx, plotname):<br>
-    events = get_events(num_threads, shower_rx)<br>
+&emsp;&emsp;def plot(num_threads, shower_rx, plotname):<br>
+    &emsp;&emsp;&emsp;&emsp;events = get_events(num_threads, shower_rx)<br>
 
-    if len(events) == 0:<br>
-        plt.axis("off")<br>
-        plt.savefig(plotname, bbox_inches="tight")<br>
-        return<br>
+    &emsp;&emsp;&emsp;&emsp;if len(events) == 0:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.axis("off")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.savefig(plotname, bbox_inches="tight")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return<br>
 
-    events = sorted(events, key=lambda e: e.timestamp)<br>
-    max_timestamp = events[-1].timestamp<br>
+    &emsp;&emsp;&emsp;&emsp;events = sorted(events, key=lambda e: e.timestamp)<br>
+    &emsp;&emsp;&emsp;&emsp;max_timestamp = events[-1].timestamp<br>
 
-    # horizontal lines<br>
-    for i in range(max_timestamp):<br>
-        plt.plot([0, num_threads - 1], [i + 0.5, i + 0.5], "k--")<br>
+    &emsp;&emsp;&emsp;&emsp;# horizontal lines<br>
+    &emsp;&emsp;&emsp;&emsp;for i in range(max_timestamp):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([0, num_threads - 1], [i + 0.5, i + 0.5], "k--")<br>
 
-    # vertical lines<br>
-    for i in range(num_threads):<br>
-        plt.plot([i, i], [-0.5, max_timestamp + 0.5], "k")<br>
+    &emsp;&emsp;&emsp;&emsp;# vertical lines<br>
+    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([i, i], [-0.5, max_timestamp + 0.5], "k")<br>
 
-    # thread labels<br>
-    for i in range(num_threads):<br>
-        plt.text(i, max_timestamp + 2, "process ${}$".format(string.letters[i]), rotation="vertical", horizontalalignment="center")<br>
+    &emsp;&emsp;&emsp;&emsp;# thread labels<br>
+    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.text(i, max_timestamp + 2, "process ${}$".format(string.letters[i]), rotation="vertical", horizontalalignment="center")<br>
 
-    # event labels<br>
-    for i in range(num_threads):<br>
-        for (j, e) in enumerate(filter(lambda e: e.owner == i, events)):<br>
-            plt.text(e.owner - 0.1, e.timestamp, "${}_{}$".format(string.letters[i], j))<br>
+    &emsp;&emsp;&emsp;&emsp;# event labels<br>
+    &emsp;&emsp;&emsp;&emsp;for i in range(num_threads):<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;for (j, e) in enumerate(filter(lambda e: e.owner == i, events)):<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.text(e.owner - 0.1, e.timestamp, "${}_{}$".format(string.letters[i], j))<br>
 
-    # events<br>
-    while len(events) > 0:<br>
-        e = events.pop(0)<br>
+    &emsp;&emsp;&emsp;&emsp;# events<br>
+    &emsp;&emsp;&emsp;&emsp;while len(events) > 0:<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e = events.pop(0)<br>
 
-        if type(e) is Local:<br>
-            plt.scatter([e.owner], [e.timestamp], c="k")<br>
-        elif type(e) is Sent:<br>
-            s = e
-            (x0, y0) = (s.owner, s.timestamp)<br>
-            r = next(e for e in events if type(e) is Received and e.src == s.src)<br>
-            (x1, y1)  = (r.owner, r.timestamp)<br>
-            plt.scatter([x0, x1], [y0, y1], c="k")<br>
-            plt.plot([x0, x1], [y0, y1])<br>
-            events.remove(r)<br>
-        else:<br>
-            pass<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if type(e) is Local:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.scatter([e.owner], [e.timestamp], c="k")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elif type(e) is Sent:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s = e
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x0, y0) = (s.owner, s.timestamp)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r = next(e for e in events if type(e) is Received and e.src == s.src)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x1, y1)  = (r.owner, r.timestamp)<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.scatter([x0, x1], [y0, y1], c="k")<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.plot([x0, x1], [y0, y1])<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;events.remove(r)<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;else:<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pass<br>
 
-    plt.axis("off")<br>
-    plt.savefig(plotname, bbox_inches="tight")<br>
+    &emsp;&emsp;&emsp;&emsp;plt.axis("off")<br>
+    &emsp;&emsp;&emsp;&emsp;plt.savefig(plotname, bbox_inches="tight")<br>
       
     </h3>
     
