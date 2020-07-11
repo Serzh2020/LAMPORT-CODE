@@ -251,35 +251,35 @@
       
       <h3>
         
-&emsp;&emsp;import lamport<br>
+&emsp;&emsp;<FONT color="red">import</FONT> lamport<br>
 
-&emsp;&emsp;def f(clock):<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(1)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">f</FONT>(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">1</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">1</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">local</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">1</FONT>)<br>
 
-&emsp;&emsp;def g(clock):<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(0)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(2)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(0)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(2)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(0)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(2)<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">g</FONT>(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">0</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">2</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">0</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">local</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">2</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">0</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">local</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">2</FONT>)<br>
 
-&emsp;&emsp;def h(clock):<br>
-    &emsp;&emsp;&emsp;&emsp;clock.local()<br>
-    &emsp;&emsp;&emsp;&emsp;clock.send(1)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
-    &emsp;&emsp;&emsp;&emsp;clock.recv(1)<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">h</FONT>(clock):<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">local</FONT>()<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">send</FONT>(<FONT color="blue">1</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">1</FONT>)<br>
+    &emsp;&emsp;&emsp;&emsp;clock.<FONT color="purple">recv</FONT>(<FONT color="blue">1</FONT>)<br>
 
-&emsp;&emsp;def main():<br>
-    &emsp;&emsp;&emsp;&emsp;lamport.wind([f, g, h], "clock.png")()<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">main</FONT>():<br>
+    &emsp;&emsp;&emsp;&emsp;lamport.<FONT color="purple">wind</FONT>([f, g, h], "clock.png")()<br>
 
-&emsp;&emsp;if __name__ == "__main__":<br>
-    &emsp;&emsp;&emsp;&emsp;main()<br>
+&emsp;&emsp;<FONT color="red">if</FONT> __name__ <FONT color="blue">==</FONT> "__main__":<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="purple">main</FONT>()<br>
         
       </h3>
         
