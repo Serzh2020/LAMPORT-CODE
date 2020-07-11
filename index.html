@@ -205,24 +205,24 @@
     &emsp;&emsp;&emsp;&emsp;events <FONT color="blue">=</FONT> <FONT color="purple">sorted</FONT>(events, key<FONT color="blue">=</FONT><FONT color="red">lambda</FONT> e: e.timestamp)<br>
     &emsp;&emsp;&emsp;&emsp;max_timestamp <FONT color="blue">=</FONT> events[<FONT color="blue">-1</FONT>].timestamp<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;<FONT color="silver"># horizontal lines</FONT><br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="gray"># horizontal lines</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(max_timestamp):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([<FONT color="blue">0</FONT>, num_threads <FONT color="blue">- 1</FONT>], [i <FONT color="blue">+ 0.5</FONT>, i <FONT color="blue">+ 0.5</FONT>], "k--")<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;# <FONT color="gray">vertical lines</FONT><br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="gray"># vertical lines</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">plot</FONT>([i, i], [<FONT color="blue">-0.5</FONT>, max_timestamp <FONT color="blue">+ 0.5</FONT>], "k")<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;# thread labels<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="gray"># thread labels</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(i, max_timestamp <FONT color="blue">+ 2</FONT>, "process ${}$".<FONT color="purple">format</FONT>(string.letters[i]), rotation<FONT color="blue">=</FONT>"vertical", horizontalalignment<FONT color="blue">=</FONT>"center")<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(i, max_timestamp <FONT color="blue">+ 2</FONT>,"process ${}$".<FONT color="purple">format</FONT>(string.letters[i]),rotation<FONT color="blue">=</FONT>"vertical",horizontalalignment<FONT color="blue">=</FONT>"center")<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;# event labels<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="gray"># event labels</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> i <FONT color="blue">in</FONT> <FONT color="purple">range</FONT>(num_threads):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">for</FONT> (j, e) <FONT color="blue">in</FONT> <FONT color="purple">enumerate</FONT>(<FONT color="purple">filter</FONT>(<FONT color="red">lambda</FONT> e: e.owner <FONT color="blue">==</FONT> i, events)):<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">text</FONT>(e.owner <FONT color="blue">- 0.1</FONT>, e.timestamp, "${}_{}$".<FONT color="purple">format</FONT>(string.letters[i], j))<br>
 <p></p>
-    &emsp;&emsp;&emsp;&emsp;# events<br>
+    &emsp;&emsp;&emsp;&emsp;<FONT color="gray"># events</FONT><br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">while</FONT> <FONT color="purple">len</FONT>(events) <FONT color="blue">> 0</FONT>:<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e <FONT color="blue">=</FONT> events.<FONT color="purple">pop</FONT>(<FONT color="blue">0</FONT>)<br>
 <p></p>
