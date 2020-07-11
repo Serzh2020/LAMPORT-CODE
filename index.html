@@ -162,7 +162,7 @@
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">done_</FONT>(self):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="blue">None</FONT>)<br>
 <p></p>
-&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">wind</FONT>(fs, plotname="clock.svg"):<br>
+&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">wind</FONT>(fs, plotname<FONT color="blue">=</FONT>"clock.svg"):<br>
     &emsp;&emsp;&emsp;&emsp;num_threads <FONT color="blue">=</FONT> <FONT color="purple">len</FONT>(fs)<br>
     &emsp;&emsp;&emsp;&emsp;ids <FONT color="blue">=</FONT> <FONT color="purple">range</FONT>(num_threads)<br>
     &emsp;&emsp;&emsp;&emsp;(shower_tx, shower_rx) <FONT color="blue">=</FONT> channel.<FONT color="purple">channel</FONT>()<br>
