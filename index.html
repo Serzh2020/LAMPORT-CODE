@@ -230,7 +230,7 @@
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">if</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Local</FONT>:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;plt.<FONT color="purple">scatter</FONT>([e.owner], [e.timestamp], c<FONT color="blue">=</FONT>"k")<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<FONT color="red">elif</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Sent</FONT>:<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s <FONT color="blue">=</FONT><br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s <FONT color="blue">=</FONT> e<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x0, y0) <FONT color="blue">=</FONT> (s.owner, s.timestamp)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r <FONT color="blue">=</FONT> <FONT color="purple">next</FONT>(e <FONT color="red">for</FONT> e <FONT color="blue">in</FONT> events <FONT color="red">if</FONT> <FONT color="purple">type</FONT>(e) <FONT color="blue">is</FONT> <FONT color="orange">Received</FONT> <FONT color="blue">and</FONT> e.src <FONT color="blue">==</FONT> s.src)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(x1, y1)  <FONT color="blue">=</FONT> (r.owner, r.timestamp)<br>
