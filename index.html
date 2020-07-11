@@ -111,7 +111,7 @@
 <p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Sent</FONT>(<FONT color="orange">Event</FONT>):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> timestamp<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;      <FONT color="blue">=</FONT> src<br>
@@ -124,7 +124,7 @@
 <p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Received</FONT>(<FONT color="orange">Event</FONT>):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, timestamp, src, dst):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp = timestamp<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> timestamp<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.src&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> src<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.dst&emsp;&emsp;&emsp;&nbsp;       <FONT color="blue">=</FONT> dst<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.owner&emsp;&ensp;&nbsp;     <FONT color="blue">=</FONT> dst<br>
@@ -137,7 +137,7 @@
 <p></p>
 &emsp;&emsp;<FONT color="red">class</FONT> <FONT color="orange">Clock_i</FONT>(object):<br>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">__init__</FONT>(self, i, channels, shower_tx):<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.i&emsp;&emsp;&emsp;&emsp;&nbsp;         = i<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.i&emsp;&emsp;&emsp;&emsp;&nbsp;         <FONT color="blue">=</FONT> i<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.channels&ensp;&nbsp;  <FONT color="blue">=</FONT> channels<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx <FONT color="blue">=</FONT> shower_tx<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">=</FONT> 0<br>
