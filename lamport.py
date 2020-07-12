@@ -50,7 +50,7 @@ class Clock_i(object):
     def __init__(self, i, channels, shower_tx):
         self.i         = i
         self.channels  = channels
-        self.shower_tx    = shower_tx
+        self.shower_tx = shower_tx
         self.timestamp = 0
 
     def local(self):
