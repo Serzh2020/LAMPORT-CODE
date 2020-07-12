@@ -7,14 +7,6 @@ import sys
 import threading
 
 class Event(object):
-    """
-    In Lamport's paper, there are three events that can occur.
-    1. A local event
-    2. A message sending
-    3. A message receiving
-    All three of these events are implemented below and can be sent to the
-    shower thread for showing.
-    """
     pass
 
 class Local(Event):
@@ -56,12 +48,6 @@ class Received(Event):
 
 class Clock_i(object):
     def __init__(self, i, channels, shower_tx):
-        """
-        `Clock(i, channels, shower_tx)` instantiates a clock for thread i;
-        every thread i in Lamport's paper is assigned a clock (C_i or Clock_i).
-        `channels` is a dictionary from thread id's to bidirectional channels.
-        `shower_tx` is the sending end of a channel to the showing thread.
-        """
         self.i         = i
         self.channels  = channels
         self.shower_tx    = shower_tx
@@ -87,11 +73,6 @@ class Clock_i(object):
         self.shower_tx.send(None)
 
 def wind(fs, plotname="clock.svg"):
-    """
-    `wind(fs)` winds the clock and spawns a thread for each function `f` in
-    `fs` which is of type `Clock_i -> ()`. `wind` returns the showing function
-    which you can call to plot the clock.
-    """
     num_threads = len(fs)
     ids = range(num_threads)
     (shower_tx, shower_rx) = channel.channel()
