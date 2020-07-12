@@ -151,7 +151,7 @@
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.shower_tx.<FONT color="purple">send</FONT>(<FONT color="orange">Sent</FONT>(self.timestamp, self.i, dst))<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(tx, _) <FONT color="blue">=</FONT> self.channels[dst]<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;tx.<FONT color="purple">send</FONT>(self.timestamp)<br>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+=</FONT> 1<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;self.timestamp <FONT color="blue">+= 1</FONT><br>
 <p></p>
     &emsp;&emsp;&emsp;&emsp;<FONT color="red">def</FONT> <FONT color="purple">recv</FONT>(self, src):<br>
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(_, rx) <FONT color="blue">=</FONT> self.channels[src]<br>
